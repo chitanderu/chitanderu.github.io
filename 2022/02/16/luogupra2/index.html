@@ -5,28 +5,135 @@
 <meta property="og:site_name" content="Hyouka">
 <meta property="og:description" content="二分算法的模板二 求区间最大值 二分算法的经典应用。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic.imgdb.cn/item/669e647fd9c307b7e9033a1c.jpg">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6895a05558cb8da5c812116d.jpg">
 <meta property="article:published_time" content="2022-02-16T00:00:00.000Z">
 <meta property="article:modified_time" content="2022-03-14T13:13:05.293Z">
 <meta property="article:author" content="夏夜繁星">
+<meta property="article:tag" content="二分">
 <meta property="article:tag" content="题解">
 <meta property="article:tag" content="洛谷">
-<meta property="article:tag" content="二分">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic.imgdb.cn/item/669e647fd9c307b7e9033a1c.jpg"><link rel="shortcut icon" href="https://pic.imgdb.cn/item/65b7a876871b83018a969459.png"><link rel="canonical" href="https://chitanderu.github.io/2022/02/16/luogupra2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-23707KBKWG"></script><script>window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-23707KBKWG');
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6895a05558cb8da5c812116d.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "洛谷p2678-跳石头",
+  "url": "https://chitanderu.github.io/2022/02/16/luogupra2/",
+  "image": "https://pic1.imgdb.cn/item/6895a05558cb8da5c812116d.jpg",
+  "datePublished": "2022-02-16T00:00:00.000Z",
+  "dateModified": "2022-03-14T13:13:05.293Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "夏夜繁星",
+      "url": "https://chitanderu.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://pic.imgdb.cn/item/65b7a876871b83018a969459.png"><link rel="canonical" href="https://chitanderu.github.io/2022/02/16/luogupra2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-23707KBKWG"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'G-23707KBKWG')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'G-23707KBKWG', {'page_path': window.location.pathname})
+}, 'google_analytics')
 </script><script>const GLOBAL_CONFIG = {
   root: '/',
-  algolia: {"appId":"YYM2BXHDGQ","apiKey":"eaf562d23227b39a6b47aed9579342fd","indexName":"blog","hits":{"per_page":6},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  algolia: undefined,
   localSearch: undefined,
   translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
   copy: {
     success: '复制成功',
-    error: '复制错误',
+    error: '复制失败',
     noSupport: '浏览器不支持'
   },
   relativeDate: {
@@ -42,16 +149,14 @@ gtag('config', 'G-23707KBKWG');
     month: '个月前'
   },
   copyright: undefined,
-  lightbox: 'fancybox',
+  lightbox: 'null',
   Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
   },
   isPhotoFigcaption: false,
-  islazyload: false,
+  islazyloadPlugin: true,
   isAnchor: false,
   percent: {
     toc: true,
@@ -60,151 +165,72 @@ gtag('config', 'G-23707KBKWG');
   autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
   title: '洛谷p2678-跳石头',
-  isPost: true,
-  isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2022-03-14 21:13:05'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = url
-      if (id) link.id = id
-      link.onerror = reject
-      link.onload = link.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        link.onload = link.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(link)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
-        
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><link rel="https://cdn.jsdelivr.net/gh/chitanderu/asoul2d@latest/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><link rel="stylesheet" href="/css/equipment.css"><!-- hexo injector head_end start -->
+  pageType: 'post'
+}</script><link rel="https://cdn.jsdelivr.net/gh/chitanderu/asoul2d@latest/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><link rel="stylesheet" href="/css/equipment.css"><!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Hyouka" type="application/atom+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/669e647fd9c307b7e9033a1c.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-table-list"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 回忆&amp;&amp;日常</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-photo-film"></i><span> 相册</span></a></li><li><a class="site-page child" href="/movies1/"><i class="fa-fw fas  fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas  fa-book"></i><span> 书籍</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/equipment/"><i class="fa-fw fas  fa-fire"></i><span> 物品</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic.imgdb.cn/item/6486071a1ddac507cc653949.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Hyouka"><span class="site-name">Hyouka</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-table-list"></i><span> 归档</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 回忆&amp;&amp;日常</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-photo-film"></i><span> 相册</span></a></li><li><a class="site-page child" href="/movies1/"><i class="fa-fw fas  fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas  fa-book"></i><span> 书籍</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fas fa-gamepad"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/equipment/"><i class="fa-fw fas  fa-fire"></i><span> 物品</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">洛谷p2678-跳石头</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-02-16T00:00:00.000Z" title="发表于 2022-02-16 08:00:00">2022-02-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-14T13:13:05.293Z" title="更新于 2022-03-14 21:13:05">2022-03-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86/">二分</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">277</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="题目描述">题目描述</h2>
-<p><img src="https://pic.imgdb.cn/item/622f3f4b5baa1a80abdc339c.jpg" /></p>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic1.imgdb.cn/item/6895a05558cb8da5c812116d.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-table-list"></i><span> 归档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 回忆&amp;&amp;日常</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-photo-film"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://pic.imgdb.cn/item/6486071a1ddac507cc653949.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hyouka</span></a><a class="nav-page-title" href="/"><span class="site-name">洛谷p2678-跳石头</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-table-list"></i><span> 归档</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 回忆&amp;&amp;日常</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-photo-film"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">洛谷p2678-跳石头</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-02-16T00:00:00.000Z" title="发表于 2022-02-16 08:00:00">2022-02-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-14T13:13:05.293Z" title="更新于 2022-03-14 21:13:05">2022-03-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86/">二分</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">277</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="题目描述">题目描述</h2>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic.imgdb.cn/item/622f3f4b5baa1a80abdc339c.jpg" /></p>
 <h2 id="算法代码">算法代码</h2>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//题目要求什么 就对什么进行二分</span></span><br><span class="line"><span class="comment">//分析题目意义 意思为找出又一个最短距离ans 使得每个石头的两两相应距离x 都比这个ans大  并且这个最短距要最大   求区间最大值 此时区间的单调性都为单调递增 因此得出结论可以使用二分算法</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">50010</span>;</span><br><span class="line"><span class="type">int</span>   shitou[N];</span><br><span class="line"><span class="type">int</span>  l,n,m;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">check</span><span class="params">(<span class="type">int</span> mid)</span></span></span><br><span class="line"><span class="function"></span>&#123;    <span class="type">int</span> use=<span class="number">0</span>;</span><br><span class="line">     <span class="type">int</span> first=<span class="number">0</span>;  <span class="comment">//从起点开始遍历</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        &#123;   <span class="keyword">if</span>(shitou[i]-first&lt;mid) &#123; use++; &#125;<span class="comment">//如果有一对石头的相邻距离比这个二分的距离小 那么不符合要求</span></span><br><span class="line">            <span class="keyword">else</span> first=shitou[i];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> use&lt;=m;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;  cin&gt;&gt;l&gt;&gt;n&gt;&gt;m ;</span><br><span class="line">   <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">      &#123;  </span><br><span class="line">            cin&gt;&gt;shitou[i];  </span><br><span class="line">      &#125;</span><br><span class="line">      shitou[++n]=l;  <span class="comment">//最后一个终点的坐标</span></span><br><span class="line">     <span class="type">int</span> l=<span class="number">0</span>;<span class="type">int</span> r=<span class="number">1e9</span>+<span class="number">10</span>;</span><br><span class="line">     <span class="keyword">while</span>(l&lt;r) </span><br><span class="line">     &#123;  <span class="type">int</span> mid=l+r+<span class="number">1</span>&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">check</span>(mid)) l=mid;</span><br><span class="line">         <span class="keyword">else</span>  r=mid<span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">   cout&lt;&lt;r;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="图解">图解</h2>
-</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a><a class="post-meta__tags" href="/tags/%E6%B4%9B%E8%B0%B7/">洛谷</a><a class="post-meta__tags" href="/tags/%E4%BA%8C%E5%88%86/">二分</a></div><div class="post_share"><div class="social-share" data-image="https://pic.imgdb.cn/item/669e647fd9c307b7e9033a1c.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2022/02/18/search/" title="递归归纳"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">递归归纳</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/02/20/luogupra3/" title="洛谷p1147-连续自然数和"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-20</div><div class="title">洛谷p1147-连续自然数和</div></div></a></div><div><a href="/2022/03/12/luoguodfs/" title="洛谷p1460-健康的奶牛"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-12</div><div class="title">洛谷p1460-健康的奶牛</div></div></a></div><div><a href="/2022/02/21/luogupra5/" title="洛谷p1036-选数"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-21</div><div class="title">洛谷p1036-选数</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://pic.imgdb.cn/item/669e647fd9c307b7e9033a1c.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">夏夜繁星</div><div class="author-info__description">若能化为星座</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/chitanderu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://space.bilibili.com/5947893" target="_blank" title="b站"><i class="fa-brands fa-bilibili" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">再一次</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E4%BB%A3%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">算法代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">图解</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/11/18/data-class/" title="大数据行销报告"><img src="https://pic.imgdb.cn/item/65362c69c458853aef19420a.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="大数据行销报告"/></a><div class="content"><a class="title" href="/2024/11/18/data-class/" title="大数据行销报告">大数据行销报告</a><time datetime="2024-11-18T00:00:00.000Z" title="发表于 2024-11-18 08:00:00">2024-11-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/18/time-series-final/" title="时间序列报告"><img src="https://pic.imgdb.cn/item/65362c69c458853aef19420a.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="时间序列报告"/></a><div class="content"><a class="title" href="/2024/11/18/time-series-final/" title="时间序列报告">时间序列报告</a><time datetime="2024-11-18T00:00:00.000Z" title="发表于 2024-11-18 08:00:00">2024-11-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/13/timeserise/" title="时间序列"><img src="https://pic.imgdb.cn/item/66fe84da335a200d6aa6893d.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="时间序列"/></a><div class="content"><a class="title" href="/2024/06/13/timeserise/" title="时间序列">时间序列</a><time datetime="2024-06-13T14:24:39.000Z" title="发表于 2024-06-13 22:24:39">2024-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/10/2024/" title="随便的记录"><img src="https://pic.imgdb.cn/item/64e4884e661c6c8e54c429e3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="随便的记录"/></a><div class="content"><a class="title" href="/2023/12/10/2024/" title="随便的记录">随便的记录</a><time datetime="2023-12-10T00:00:00.000Z" title="发表于 2023-12-10 08:00:00">2023-12-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/01/techology/" title="雅思作文--科技">雅思作文--科技</a><time datetime="2023-11-01T00:00:00.000Z" title="发表于 2023-11-01 08:00:00">2023-11-01</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://pic.imgdb.cn/item/6486071a1ddac507cc653949.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By 夏夜繁星</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><img style="width:24px;height:24px;margin-bottom:-8px" src="https://icp.gov.moe/images/ico64.png"><a href="https://icp.gov.moe/?keyword=20220507" target="_blank"  style="color:#FF81B3D1">萌ICP备20220507号</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>function loadValine () {
-  function initValine () {
-    const valine = new Valine(Object.assign({
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E4%BA%8C%E5%88%86/">二分</a><a class="post-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a><a class="post-meta__tags" href="/tags/%E6%B4%9B%E8%B0%B7/">洛谷</a></div><div class="post-share"><div class="social-share" data-image="https://pic1.imgdb.cn/item/6895a05558cb8da5c812116d.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width no-desc" href="/2022/02/18/search/" title="递归归纳"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">递归归纳</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2022/02/20/luogupra3/" title="洛谷p1147-连续自然数和"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-20</div><div class="info-item-2">洛谷p1147-连续自然数和</div></div></div></a><a class="pagination-related no-desc" href="/2022/03/12/luoguodfs/" title="洛谷p1460-健康的奶牛"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-12</div><div class="info-item-2">洛谷p1460-健康的奶牛</div></div></div></a><a class="pagination-related no-desc" href="/2022/02/21/luogupra5/" title="洛谷p1036-选数"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-21</div><div class="info-item-2">洛谷p1036-选数</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic1.imgdb.cn/item/6895a05558cb8da5c812116d.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">夏夜繁星</div><div class="author-info-description">若能化为星座</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/chitanderu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://space.bilibili.com/5947893" target="_blank" title="b站"><i class="fa-brands fa-bilibili" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">🐧</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E4%BB%A3%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">算法代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">图解</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/11/18/data-class/" title="大数据行销报告"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic.imgdb.cn/item/65362c69c458853aef19420a.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="大数据行销报告"/></a><div class="content"><a class="title" href="/2024/11/18/data-class/" title="大数据行销报告">大数据行销报告</a><time datetime="2024-11-18T00:00:00.000Z" title="发表于 2024-11-18 08:00:00">2024-11-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/18/time-series-final/" title="时间序列报告"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic.imgdb.cn/item/65362c69c458853aef19420a.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="时间序列报告"/></a><div class="content"><a class="title" href="/2024/11/18/time-series-final/" title="时间序列报告">时间序列报告</a><time datetime="2024-11-18T00:00:00.000Z" title="发表于 2024-11-18 08:00:00">2024-11-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/13/timeserise/" title="时间序列"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic.imgdb.cn/item/66fe84da335a200d6aa6893d.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="时间序列"/></a><div class="content"><a class="title" href="/2024/06/13/timeserise/" title="时间序列">时间序列</a><time datetime="2024-06-13T14:24:39.000Z" title="发表于 2024-06-13 22:24:39">2024-06-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/10/2024/" title="随便的记录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic.imgdb.cn/item/64e4884e661c6c8e54c429e3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="随便的记录"/></a><div class="content"><a class="title" href="/2023/12/10/2024/" title="随便的记录">随便的记录</a><time datetime="2023-12-10T00:00:00.000Z" title="发表于 2023-12-10 08:00:00">2023-12-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/01/techology/" title="雅思作文--科技">雅思作文--科技</a><time datetime="2023-11-01T00:00:00.000Z" title="发表于 2023-11-01 08:00:00">2023-11-01</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2020 - 2025 By 夏夜繁星</span></div><div class="footer_custom_text"><img style="width:24px;height:24px;margin-bottom:-8px" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://icp.gov.moe/images/ico64.png"><a href="https://icp.gov.moe/?keyword=20220507" target="_blank"  style="color:#FF81B3D1">萌ICP备20220507号</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
       el: '#vcomment',
       appId: 'BL36ISblfM7KVmNsGmv9EFlK-gzGzoHsz',
       appKey: 'n9FSYlJYeax7W11kmaSBOMUj',
       avatar: 'monsterid',
       serverURLs: '',
       emojiMaps: "",
-      path: window.location.pathname,
-      visitor: false
-    }, null))
+      visitor: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
   }
 
-  if (typeof Valine === 'function') initValine() 
-  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
-}
-
-if ('Valine' === 'Valine' || !false) {
-  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
-  else setTimeout(loadValine, 0)
-} else {
-  function loadOtherComment () {
-    loadValine()
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine(el, path)
+    }
   }
-}</script></div><div id="aplayer"> </div><script src="https://cdn.jsdelivr.net/gh/chitanderu/asoul2d@latest/index.js"></script><script src="musicrss/music1.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><div id="aplayer"> </div><script src="https://cdn.jsdelivr.net/gh/chitanderu/asoul2d@latest/index.js"></script><script src="musicrss/music1.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
 POWERMODE.shake = false;
 POWERMODE.mobile = false;
 document.body.addEventListener('input', POWERMODE);
-</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="https://cdnjs.cloudflare.com/ajax/libs/busuanzi/2.3.0/bsz.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script></div></div></body></html>
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="https://cdnjs.cloudflare.com/ajax/libs/busuanzi/2.3.0/bsz.pure.mini.js"></script></div></body></html>
